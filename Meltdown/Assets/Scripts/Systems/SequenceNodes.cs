@@ -37,8 +37,8 @@ public class SequenceNodes : MonoBehaviour
 
     private void Start()
     {
-        StartButtonLoop();
         pressure = FindFirstObjectByType<PressureSystem>();
+        StartButtonLoop();
     }
 
     public void StartButtonLoop()
