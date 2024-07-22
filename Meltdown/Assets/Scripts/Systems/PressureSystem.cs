@@ -36,7 +36,7 @@ public class PressureSystem : MonoBehaviour
     public void UpdateStability(bool successfulUpdate)
     {
         if (successfulUpdate)
-            stabilityMax += rewardAddition;
+        { stabilityMax += rewardAddition; currentPuzzlesUncompleted -= 1; }
         else
             stabilityMax -= penaltyReducement;
     }

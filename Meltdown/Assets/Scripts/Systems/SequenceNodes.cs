@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class SequenceNodes : MonoBehaviour
 {
+    private PressureSystem pressure;
+
     [Header("All available options")]
     public List<Sprite> symbols;
 
@@ -27,17 +29,26 @@ public class SequenceNodes : MonoBehaviour
     List<int> numbers = new List<int>();
 
     [Space(), Header("Other")]
-    public bool success = false;
+    public bool success = true;
     public bool completedRepeat = false;
+
+    private bool showing = false;
+    private bool playing = false;
 
     private void Start()
     {
         StartButtonLoop();
+        pressure = FindFirstObjectByType<PressureSystem>();
     }
 
     public void StartButtonLoop()
     {
-        numbers.Clear();
+        playing = true;
+
+        if (success)
+        { pressure.currentPuzzlesUncompleted += 1; success = false; }
+
+            numbers.Clear();
         for (int i = 0; i < curAmount; i++)
         {
             numbers[i] = Random.Range(0, symbols.Count);
@@ -45,6 +56,7 @@ public class SequenceNodes : MonoBehaviour
 
         playerChosen.Clear();
 
+        showing = true;
         StartCoroutine(ButtonSequence(numbers));
     }
 
@@ -55,14 +67,28 @@ public class SequenceNodes : MonoBehaviour
             completedRepeat = true;
     }
 
-    private IEnumerator ButtonSequence(List<int> numbers)
+    public void RecallButtonSequence()
     {
-        for(int i=0; i < numbers.Count; i++)
+        if (!showing && playing)
+            showing = true;
+
+        StartCoroutine(DisplaySequence(numbers));
+    }
+
+    private IEnumerator DisplaySequence(List<int> numbers)
+    {
+        for (int i = 0; i < numbers.Count; i++)
         {
             imageScreen.sprite = symbols[numbers[i]];
             yield return new WaitForSeconds(intervals);
         }
+        showing = false;
+        yield return null;
+    }
 
+    private IEnumerator ButtonSequence(List<int> numbers)
+    {
+        StartCoroutine(DisplaySequence(numbers));
         yield return new WaitUntil(() => completedRepeat = true);
 
         int count = 0;
@@ -77,9 +103,9 @@ public class SequenceNodes : MonoBehaviour
         }
 
         // Insert stability change here
-
+        pressure.UpdateStability(success);
         // Wait for random amount of time until restarting the loop
-
+        playing = false;
         yield return new WaitForSeconds(Random.Range(minTimeTillReset, maxTimeTillReset));
 
         StartButtonLoop();
