@@ -5109,6 +5109,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 65e4375390f452f46b82f46573621305, type: 3}
   - {fileID: 21300000, guid: f42fe9e027465fa4b920c3d544965f6f, type: 3}
   imageScreen: {fileID: 1326725271}
+  loading: {fileID: 21300000, guid: e66f9cc8a53512042a176c17bc6a6652, type: 3}
+  flash: {fileID: 21300000, guid: fd92ea7bc9e79d54db19c797f733f2be, type: 3}
   curAmount: 4
   lowest: 4
   highest: 10

@@ -14,6 +14,8 @@ public class SequenceNodes : MonoBehaviour
     [Space(), Header("References")]
     public Image imageScreen;
 
+    public Sprite loading;
+    public Sprite flash;
     [Space(), Header("Sequence Stages")]
     public int curAmount = 4;
     public int lowest = 4;
@@ -26,7 +28,7 @@ public class SequenceNodes : MonoBehaviour
 
     [Space()]
     public List<int> playerChosen = new List<int>();
-    List<int> numbers = new List<int>();
+    public List<int> numbers = new List<int>();
 
     [Space(), Header("Other")]
     public bool success = true;
@@ -48,10 +50,10 @@ public class SequenceNodes : MonoBehaviour
         if (success)
         { pressure.currentPuzzlesUncompleted += 1; success = false; }
 
-            numbers.Clear();
+        numbers.Clear();
         for (int i = 0; i < curAmount; i++)
         {
-            numbers[i] = Random.Range(0, symbols.Count);
+            numbers.Add(Random.Range(0, symbols.Count - 1));
         }
 
         playerChosen.Clear();
@@ -63,7 +65,7 @@ public class SequenceNodes : MonoBehaviour
     public void UpdatePlayerList(int valueSelected)
     {
         playerChosen.Add(valueSelected);
-        if (playerChosen.Count - 1 == numbers.Count)
+        if (playerChosen.Count - 1 == numbers.Count - 1)
             completedRepeat = true;
     }
 
@@ -81,7 +83,10 @@ public class SequenceNodes : MonoBehaviour
         {
             imageScreen.sprite = symbols[numbers[i]];
             yield return new WaitForSeconds(intervals);
+            imageScreen.sprite = flash;
+            yield return new WaitForSeconds(.1f);
         }
+        imageScreen.sprite = loading;
         showing = false;
         yield return null;
     }
@@ -89,7 +94,7 @@ public class SequenceNodes : MonoBehaviour
     private IEnumerator ButtonSequence(List<int> numbers)
     {
         StartCoroutine(DisplaySequence(numbers));
-        yield return new WaitUntil(() => completedRepeat = true);
+        yield return new WaitUntil(() => completedRepeat);
 
         int count = 0;
 
@@ -97,15 +102,19 @@ public class SequenceNodes : MonoBehaviour
 
         foreach(int number in numbers)
         {
-            if (number != playerChosen[count])
-            { success = false; }
-            count++;
+            if(numbers.Count != 0)
+            {
+                if (number != playerChosen[count])
+                { success = false; }
+                count++;
+            }
         }
 
         // Insert stability change here
         pressure.UpdateStability(success);
         // Wait for random amount of time until restarting the loop
         playing = false;
+        completedRepeat = false;
         yield return new WaitForSeconds(Random.Range(minTimeTillReset, maxTimeTillReset));
 
         StartButtonLoop();
