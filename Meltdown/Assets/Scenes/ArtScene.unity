@@ -136,15 +136,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65243e319089837438262098d6843d4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.195
+      value: 0.683
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65243e319089837438262098d6843d4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.098
+      value: 1.033
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65243e319089837438262098d6843d4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.137
+      value: 2.047
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65243e319089837438262098d6843d4a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -189,6 +189,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 65243e319089837438262098d6843d4a, type: 3}
       propertyPath: m_Name
       value: PipesSystemWithDials
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426653101172564924, guid: 65243e319089837438262098d6843d4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.136
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426653101172564924, guid: 65243e319089837438262098d6843d4a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.7954857
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426653101172564924, guid: 65243e319089837438262098d6843d4a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.699
       objectReference: {fileID: 0}
     - target: {fileID: 4843644279218822827, guid: 65243e319089837438262098d6843d4a, type: 3}
       propertyPath: m_LocalPosition.x
