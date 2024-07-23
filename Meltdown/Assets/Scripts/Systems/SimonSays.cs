@@ -40,6 +40,7 @@ public class SimonSays : MonoBehaviour
     private bool firstPass = true;
     private void Start()
     {
+        text.text = "...";
         stability = FindFirstObjectByType<PressureSystem>();
 
         SimonSaysGameLoop();
@@ -47,7 +48,6 @@ public class SimonSays : MonoBehaviour
 
     public void PullLever(int whichLever)
     {
-        print("pulled");
         if (whichLever == 1)
             pressedSwitch1 = true;
         if (whichLever == 2)
@@ -72,7 +72,7 @@ public class SimonSays : MonoBehaviour
     private IEnumerator DisplayPrompt(SimonPrompts prompt)
     {
         if (firstPass)
-            yield return new WaitForSeconds(Random.Range(5, 10));
+        { stability.currentPuzzlesUncompleted -= 1; yield return new WaitForSeconds(Random.Range(5, 10)); stability.currentPuzzlesUncompleted += 1; }
 
         firstPass = false;
         // Ensure the action is always taken even if a dud round
@@ -101,6 +101,9 @@ public class SimonSays : MonoBehaviour
 
         stability.UpdateStability(completedTask);
         if (completedTask) success = true;
+
+        yield return new WaitForSeconds(1);
+        text.text = "...";
 
         yield return new WaitForSeconds(Random.Range(minCooldown, maxCooldown));
         SimonSaysGameLoop();

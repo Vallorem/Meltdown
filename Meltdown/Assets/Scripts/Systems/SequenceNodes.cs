@@ -37,6 +37,7 @@ public class SequenceNodes : MonoBehaviour
     private bool showing = false;
     private bool playing = false;
 
+    private bool firstPass = true;
     private void Start()
     {
         pressure = FindFirstObjectByType<PressureSystem>();
@@ -93,6 +94,9 @@ public class SequenceNodes : MonoBehaviour
 
     private IEnumerator ButtonSequence(List<int> numbers)
     {
+        if (firstPass)
+        { pressure.currentPuzzlesUncompleted -= 1; yield return new WaitForSeconds(Random.Range(20, 25)); pressure.currentPuzzlesUncompleted += 1; }
+
         StartCoroutine(DisplaySequence(numbers));
         yield return new WaitUntil(() => completedRepeat);
 

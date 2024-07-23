@@ -25,6 +25,6 @@ public class Lever : MonoBehaviour
     {
         Vector3 newMousePos = Input.mousePosition;
         if (newMousePos.y < 0) newMousePos.y *= -1;
-        if (startMouseDragPosition.y - newMousePos.y > 15f)  simonSays.PullLever(lever);
+        if (startMouseDragPosition.y - newMousePos.y > 100f)  simonSays.PullLever(lever);
     }
 }

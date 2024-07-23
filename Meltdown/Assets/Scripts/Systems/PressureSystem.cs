@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,6 +21,12 @@ public class PressureSystem : MonoBehaviour
     [Space(), Header("References")]
     [SerializeField] private RectTransform PressureBar;
     [SerializeField] private RectTransform StabilityBar;
+
+    [SerializeField] private GameObject GameOverScreen;
+
+    [SerializeField] private TextMeshProUGUI time;
+    [SerializeField] private TextMeshProUGUI completetext;
+    [SerializeField] private TextMeshProUGUI failtext;
 
     [Space(), Header("Appropriate values")]
     public float currentPuzzlesUncompleted = 0;
@@ -51,7 +58,6 @@ public class PressureSystem : MonoBehaviour
 
     private void Update()
     {
-        totalTime += Time.deltaTime;
         if(currentStability <= 0)
         {
             currentStability = 0;
@@ -64,8 +70,16 @@ public class PressureSystem : MonoBehaviour
 
         if(currentPressure > 0)
         {
+            totalTime += Time.deltaTime;
             currentPressure -= Time.deltaTime * baseMultiplierForPressure * (stabilityMax / currentStability);
             PressureBar.offsetMin = new Vector2(1.0645f - (currentPressure / pressureMax), 0);
+        }
+        else
+        {
+            GameOverScreen.SetActive(true);
+            time.text = "Time Survived: " + totalTime;
+            completetext.text = "Puzzles Complete: " + puzzlesSucceeded;
+            failtext.text = "Puzzles Failed: " + puzzlesFailed;
         }
 
     }

@@ -8,6 +8,13 @@ public class Switch : MonoBehaviour
 
     public bool enable = true;
 
+    private PressureSystem pressure;
+
+    private void Start()
+    {
+        pressure = FindFirstObjectByType<PressureSystem>();
+    }
+
     private void OnMouseDown()
     {
         print("hit");
@@ -15,5 +22,12 @@ public class Switch : MonoBehaviour
             enable = false;
         else
             enable = true;
+
+        if (enable)
+            pressure.currentPuzzlesUncompleted -= 1 / 8;
+        else
+            pressure.currentPuzzlesUncompleted += 1 / 8;
     }
+
+
 }
