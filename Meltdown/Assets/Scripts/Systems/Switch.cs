@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    public GameObject light;
+    public GameObject indicator;
 
     public bool enable = true;
 

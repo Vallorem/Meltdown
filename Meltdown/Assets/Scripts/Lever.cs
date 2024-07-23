@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Lever : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Vector3 startMouseDragPosition;
+    private SimonSays simonSays;
+    public int lever;
+    private void OnMouseDown()
     {
-        
+        startMouseDragPosition = Input.mousePosition;
+        if (startMouseDragPosition.y < 0)
+            startMouseDragPosition = new Vector3(startMouseDragPosition.x, startMouseDragPosition.y * -1, startMouseDragPosition.z);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        
+        simonSays = FindFirstObjectByType<SimonSays>();
+    }
+
+    private void OnMouseDrag()
+    {
+        Vector3 newMousePos = Input.mousePosition;
+        if (newMousePos.y < 0) newMousePos.y *= -1;
+        if (startMouseDragPosition.y - newMousePos.y > 15f)  simonSays.PullLever(lever);
     }
 }

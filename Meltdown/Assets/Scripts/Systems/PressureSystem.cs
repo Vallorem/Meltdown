@@ -27,6 +27,11 @@ public class PressureSystem : MonoBehaviour
     [HorizontalLine(2, EColor.White), Header("Play Time Variables")]
     [SerializeField] private float currentStability;
     [SerializeField] private float currentPressure;
+
+    private float totalTime = 0;
+    private int puzzlesSucceeded = 0;
+    private int puzzlesFailed = 0;
+
     private void Start()
     {
         currentStability = stabilityMax;
@@ -36,9 +41,9 @@ public class PressureSystem : MonoBehaviour
     public void UpdateStability(bool successfulUpdate)
     {
         if (successfulUpdate)
-        { currentStability += rewardAddition; currentPuzzlesUncompleted -= 1; }
+        { currentStability += rewardAddition; currentPuzzlesUncompleted -= 1; puzzlesSucceeded++; }
         else
-            currentStability -= penaltyReducement;
+        { currentStability -= penaltyReducement; puzzlesFailed++; }
 
         if (currentStability > stabilityMax)
             currentStability = stabilityMax;
@@ -46,6 +51,7 @@ public class PressureSystem : MonoBehaviour
 
     private void Update()
     {
+        totalTime += Time.deltaTime;
         if(currentStability <= 0)
         {
             currentStability = 0;
