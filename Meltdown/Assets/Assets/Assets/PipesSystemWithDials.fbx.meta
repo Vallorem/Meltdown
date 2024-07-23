@@ -7,8 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: BlackArrow2
+    second: {fileID: 2100000, guid: d546f9c31bd6c6f49a53d1c696324fc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: CurvedPipes
     second: {fileID: 2100000, guid: fbafe38260ae1f24c89450789b8d7167, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dial7
+    second: {fileID: 2100000, guid: 1d08b248ccf086e4fbe4009ca2fb84f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DialLabel
+    second: {fileID: 2100000, guid: 7fe89c879c115174a8196e184aa929fe, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -17,8 +32,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Glass1
+    second: {fileID: 2100000, guid: 6fac9141ad6ba4e43a465da831c65aca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Pipe
     second: {fileID: 2100000, guid: 3f254c05b6144cc449cb3e53abc96cc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RedArrow4
+    second: {fileID: 2100000, guid: 8950dde9d55aa944c930fe5452259424, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
