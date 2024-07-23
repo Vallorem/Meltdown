@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 9d25c95b8c70e7e4db1893fd8671b477
+guid: 91701ab9106933a43b966f60a6056939
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CurvedPipes
+    second: {fileID: 2100000, guid: fbafe38260ae1f24c89450789b8d7167, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ExtraScrews
+    second: {fileID: 2100000, guid: 1441fd8770da9be4796d5a0d8d86748d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pipe
+    second: {fileID: 2100000, guid: 3f254c05b6144cc449cb3e53abc96cc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Screws
+    second: {fileID: 2100000, guid: 93dc39cc915b004408699be361dd4243, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
