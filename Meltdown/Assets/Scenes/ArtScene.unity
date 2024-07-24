@@ -587,10 +587,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7787603707452235156, guid: 9e0fb9caa9f7fd04088cb36fc4652f48, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c15bd6cbadebbe940b509bb5e7ca28ff, type: 2}
+    - target: {fileID: -2911847525680549356, guid: 9e0fb9caa9f7fd04088cb36fc4652f48, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c15bd6cbadebbe940b509bb5e7ca28ff, type: 2}
     - target: {fileID: 919132149155446097, guid: 9e0fb9caa9f7fd04088cb36fc4652f48, type: 3}
       propertyPath: m_Name
       value: Completed DeskComponents
       objectReference: {fileID: 0}
+    - target: {fileID: 1230406211106079602, guid: 9e0fb9caa9f7fd04088cb36fc4652f48, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c15bd6cbadebbe940b509bb5e7ca28ff, type: 2}
+    - target: {fileID: 7788393577672692729, guid: 9e0fb9caa9f7fd04088cb36fc4652f48, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c15bd6cbadebbe940b509bb5e7ca28ff, type: 2}
+    - target: {fileID: 7792046467478764352, guid: 9e0fb9caa9f7fd04088cb36fc4652f48, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c15bd6cbadebbe940b509bb5e7ca28ff, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e0fb9caa9f7fd04088cb36fc4652f48, type: 3}
 --- !u!1001 &317600242
@@ -929,6 +949,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2662277672216107645, guid: 97cc1291213e0a04597b9aafd058922b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 143f0988f5eadd448b52a764b51a252e, type: 2}
     - target: {fileID: 919132149155446097, guid: 97cc1291213e0a04597b9aafd058922b, type: 3}
       propertyPath: m_Name
       value: Completed Desk
