@@ -14,6 +14,7 @@ public class Switch : MonoBehaviour
     private void Start()
     {
         pressure = FindFirstObjectByType<PressureSystem>();
+        StartCoroutine(RandomlyShut());
     }
 
     private void OnMouseDown()
@@ -32,5 +33,24 @@ public class Switch : MonoBehaviour
             pressure.currentPuzzlesUncompleted += 1 / 8;
     }
 
+    private void Update()
+    {
+        if(enable)
+            indicator.GetComponent<MeshRenderer>().materials[0].color = Color.white;
+        else
+            indicator.GetComponent<MeshRenderer>().materials[0].color = Color.red;
+    }
+    
+    private IEnumerator RandomlyShut()
+    {
+        while(true)
+        {
+            enable = false;
+
+            yield return new WaitForSeconds(Random.Range(20, 30));
+        }
+
+        yield return null;
+    }
 
 }

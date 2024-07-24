@@ -27,12 +27,6 @@ public class Lever : MonoBehaviour
     {
         Vector3 newMousePos = Input.mousePosition;
         if (newMousePos.y < 0) newMousePos.y *= -1;
-        if (startMouseDragPosition.y - newMousePos.y > 100f)  {simonSays.PullLever(lever); animator.SetFloat("Blend", 1);}
-    }
-
-    private IEnumerator ResetLeverFlip()
-    {
-        yield return new WaitForSeconds(.5f);
-        animator.SetFloat("Blend", 0);
+        if (startMouseDragPosition.y - newMousePos.y > 100f)  {simonSays.PullLever(lever); audio.Play();}
     }
 }

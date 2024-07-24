@@ -99,7 +99,7 @@ public class PressureSystem : MonoBehaviour
         if(currentPressure > 0)
         {
             totalTime += Time.deltaTime;
-            currentPressure -= Time.deltaTime * (currentBasePressureDrop + .125f * amountOfPressureUntouched) * (stabilityMax / currentStability);
+            currentPressure -= Time.deltaTime * (currentBasePressureDrop + (.5f - .125f * amountOfPressureUntouched)) * (stabilityMax / currentStability);
             PressureBar.offsetMin = new Vector2(1 - (currentPressure / pressureMax), 0);
         }
         else
