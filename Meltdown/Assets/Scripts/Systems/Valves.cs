@@ -13,17 +13,23 @@ public class Valves : MonoBehaviour
     [SerializeField] private GameObject currentPressureIndicator;
     [SerializeField] private GameObject currentObjectiveIndicator;
 
-    private float currentGoal = 180f;
+    private PressureSystem system;
+    private float currentGoal = 0f;
 
-    private void OnMouseDown()
+    private bool changed = false;
+    private bool updated = false;
+    
+    private void OnMouseOver()
     {
         if(Input.GetKey(KeyCode.Mouse0))
         {
-            currentRotation -= Time.deltaTime * rotationSpeed;
+            currentRotation += Time.deltaTime * rotationSpeed;
+            updated = false;
         }
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            currentRotation += Time.deltaTime * rotationSpeed;
+            currentRotation -= Time.deltaTime * rotationSpeed;
+            updated = false;
         }
 
         if (currentRotation < -135)
@@ -33,21 +39,47 @@ public class Valves : MonoBehaviour
             currentRotation = 135;
 
         currentPressureIndicator.gameObject.transform.SetPositionAndRotation(currentPressureIndicator.gameObject.transform.position, 
-            new Quaternion(currentRotation, currentPressureIndicator.gameObject.transform.rotation.y, currentPressureIndicator.gameObject.transform.rotation.z, currentPressureIndicator.gameObject.transform.rotation.w));
+            new Quaternion(currentRotation / 360, currentPressureIndicator.gameObject.transform.rotation.y, currentPressureIndicator.gameObject.transform.rotation.z, currentPressureIndicator.gameObject.transform.rotation.w));
     }
 
     private void Start()
     {
+        system = FindFirstObjectByType<PressureSystem>();
         StartCoroutine(RandomSet());
     }
-    
+
+    private void Update()
+    {
+        if(!updated)
+        {
+            updated = true;
+            if(currentRotation > currentGoal - 10f || currentRotation < currentGoal + 10f)
+            {
+                if(!changed)
+                {
+                    changed = true;
+                    system.currentBasePressureDrop -= .25f;
+                }
+            }
+            else
+            {
+                if(!changed)
+                {
+                    changed = true;
+                    system.currentBasePressureDrop += .25f;
+                }
+            }
+        }
+    }
+
     public IEnumerator RandomSet()
     {
         while(!gameOver)
         {
+            changed = false;
             currentGoal = Random.Range(-13500, 13500) / 100;
             currentObjectiveIndicator.gameObject.transform.SetPositionAndRotation(currentObjectiveIndicator.gameObject.transform.position, 
-                new Quaternion(currentGoal,  currentPressureIndicator.gameObject.transform.rotation.y, currentObjectiveIndicator.gameObject.transform.rotation.z, currentObjectiveIndicator.gameObject.transform.rotation.w));
+                new Quaternion(currentGoal / 360,  currentPressureIndicator.gameObject.transform.rotation.y, currentObjectiveIndicator.gameObject.transform.rotation.z, currentObjectiveIndicator.gameObject.transform.rotation.w));
             yield return new WaitForSeconds(Random.Range(0f, 50f));
         }
     }

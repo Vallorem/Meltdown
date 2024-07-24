@@ -16,7 +16,6 @@ public class PressureSystem : MonoBehaviour
     [SerializeField] private float rewardAddition = 20;
 
     [SerializeField] private float decreasePerPuzzle = 1;
-    [SerializeField] private float baseMultiplierForPressure = 1;
 
     [Space(), Header("References")]
     [SerializeField] private RectTransform PressureBar;
@@ -38,7 +37,8 @@ public class PressureSystem : MonoBehaviour
     private float totalTime = 0;
     private int puzzlesSucceeded = 0;
     private int puzzlesFailed = 0;
-
+    public float currentBasePressureDrop = 1.5f;
+    public float amountOfPressureUntouched = 4;
     public void EndGame()
     {
         currentPressure = 0;
@@ -63,6 +63,12 @@ public class PressureSystem : MonoBehaviour
 
     private void Update()
     {
+        if(amountOfPressureUntouched < 0)
+            amountOfPressureUntouched = 0;
+        
+        if(amountOfPressureUntouched > 4)
+            amountOfPressureUntouched = 4;
+        
         if(currentStability <= 0)
         {
             currentStability = 0;
@@ -76,7 +82,7 @@ public class PressureSystem : MonoBehaviour
         if(currentPressure > 0)
         {
             totalTime += Time.deltaTime;
-            currentPressure -= Time.deltaTime * baseMultiplierForPressure * (stabilityMax / currentStability);
+            currentPressure -= Time.deltaTime * (currentBasePressureDrop + .125f * amountOfPressureUntouched) * (stabilityMax / currentStability);
             PressureBar.offsetMin = new Vector2(1 - (currentPressure / pressureMax), 0);
         }
         else
