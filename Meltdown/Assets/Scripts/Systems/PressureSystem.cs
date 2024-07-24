@@ -47,7 +47,7 @@ public class PressureSystem : MonoBehaviour
     public AudioSource wrong;
     public AudioSource right;
     
-    private bool startedAlarm;
+    private bool startedAlarm = false;
     public void EndGame()
     {
         currentPressure = 0;
@@ -88,7 +88,7 @@ public class PressureSystem : MonoBehaviour
             StabilityBar.offsetMin = new Vector2(1 - (currentStability / stabilityMax), 0);
         }
 
-        if(currentStability < 200 && !startedAlarm)
+        if(currentStability < 300 && !startedAlarm)
         {
             startedAlarm = true;
             light1.color = Color.red;

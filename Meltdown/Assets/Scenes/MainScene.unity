@@ -2760,9 +2760,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4373872412902693392, guid: 218ce481c2f0f114f9351b7826264bf3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1314
+      objectReference: {fileID: 0}
+    - target: {fileID: -4373872412902693392, guid: 218ce481c2f0f114f9351b7826264bf3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.012699977
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 218ce481c2f0f114f9351b7826264bf3, type: 3}
       propertyPath: m_Name
       value: SM_CompletedDeskComponents
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710283190300011179, guid: 218ce481c2f0f114f9351b7826264bf3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1314
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710283190300011179, guid: 218ce481c2f0f114f9351b7826264bf3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0127
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 218ce481c2f0f114f9351b7826264bf3, type: 3}
