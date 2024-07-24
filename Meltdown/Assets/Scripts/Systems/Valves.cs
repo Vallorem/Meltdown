@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Valves : MonoBehaviour
 {
-    [Range(0, 360)] public float currentRotation = 180;
+    [Range(-135, 135)] public float currentRotation = 0;
     public float give = 10;
     public float rotationSpeed = 5;
 
@@ -26,23 +26,28 @@ public class Valves : MonoBehaviour
             currentRotation += Time.deltaTime * rotationSpeed;
         }
 
-        if (currentRotation < 0)
-            currentRotation = 0;
+        if (currentRotation < -135)
+            currentRotation = -135;
 
-        if (currentRotation > 360)
-            currentRotation = 360;
+        if (currentRotation > 135)
+            currentRotation = 135;
 
         currentPressureIndicator.gameObject.transform.SetPositionAndRotation(currentPressureIndicator.gameObject.transform.position, 
-            new Quaternion(currentPressureIndicator.gameObject.transform.rotation.x, currentRotation, currentPressureIndicator.gameObject.transform.rotation.z, currentPressureIndicator.gameObject.transform.rotation.w));
+            new Quaternion(currentRotation, currentPressureIndicator.gameObject.transform.rotation.y, currentPressureIndicator.gameObject.transform.rotation.z, currentPressureIndicator.gameObject.transform.rotation.w));
     }
 
+    private void Start()
+    {
+        StartCoroutine(RandomSet());
+    }
+    
     public IEnumerator RandomSet()
     {
         while(!gameOver)
         {
-            currentGoal = Random.Range(1, 36000) / 100;
+            currentGoal = Random.Range(-13500, 13500) / 100;
             currentObjectiveIndicator.gameObject.transform.SetPositionAndRotation(currentObjectiveIndicator.gameObject.transform.position, 
-                new Quaternion(currentObjectiveIndicator.gameObject.transform.rotation.x, currentGoal, currentObjectiveIndicator.gameObject.transform.rotation.z, currentObjectiveIndicator.gameObject.transform.rotation.w));
+                new Quaternion(currentGoal,  currentPressureIndicator.gameObject.transform.rotation.y, currentObjectiveIndicator.gameObject.transform.rotation.z, currentObjectiveIndicator.gameObject.transform.rotation.w));
             yield return new WaitForSeconds(Random.Range(0f, 50f));
         }
     }
