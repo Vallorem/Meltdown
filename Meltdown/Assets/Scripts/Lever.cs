@@ -8,7 +8,6 @@ public class Lever : MonoBehaviour
     private Vector3 startMouseDragPosition;
     private SimonSays simonSays;
     public int lever;
-    public Animator animator;
     private void OnMouseDown()
     {
         startMouseDragPosition = Input.mousePosition;

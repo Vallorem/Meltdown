@@ -39,11 +39,6 @@ public class PressureSystem : MonoBehaviour
     private int puzzlesSucceeded = 0;
     private int puzzlesFailed = 0;
 
-    public void EndGame()
-    {
-        currentPressure = 0;
-        currentStability = 0;
-    }
     private void Start()
     {
         currentStability = stabilityMax;
@@ -70,14 +65,14 @@ public class PressureSystem : MonoBehaviour
         else
         {
             currentStability -= (1 * (decreasePerPuzzle * currentPuzzlesUncompleted + 1)) * Time.deltaTime;
-            StabilityBar.offsetMin = new Vector2(1 - (currentStability / stabilityMax), 0);
+            StabilityBar.offsetMin = new Vector2(1.0645f - (currentStability / stabilityMax), 0);
         }
 
         if(currentPressure > 0)
         {
             totalTime += Time.deltaTime;
             currentPressure -= Time.deltaTime * baseMultiplierForPressure * (stabilityMax / currentStability);
-            PressureBar.offsetMin = new Vector2(1 - (currentPressure / pressureMax), 0);
+            PressureBar.offsetMin = new Vector2(1.0645f - (currentPressure / pressureMax), 0);
         }
         else
         {
