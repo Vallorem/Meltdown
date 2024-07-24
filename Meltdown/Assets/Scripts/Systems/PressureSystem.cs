@@ -39,6 +39,15 @@ public class PressureSystem : MonoBehaviour
     private int puzzlesFailed = 0;
     public float currentBasePressureDrop = 1.5f;
     public float amountOfPressureUntouched = 4;
+
+    public Light light1;
+    public Light light2;
+    
+    public AudioSource alarm;
+    public AudioSource wrong;
+    public AudioSource right;
+    
+    private bool startedAlarm;
     public void EndGame()
     {
         currentPressure = 0;
@@ -53,9 +62,9 @@ public class PressureSystem : MonoBehaviour
     public void UpdateStability(bool successfulUpdate)
     {
         if (successfulUpdate)
-        { currentStability += rewardAddition; currentPuzzlesUncompleted -= 1; puzzlesSucceeded++; }
+        { currentStability += rewardAddition; currentPuzzlesUncompleted -= 1; puzzlesSucceeded++; right.Play();}
         else
-        { currentStability -= penaltyReducement; puzzlesFailed++; }
+        { currentStability -= penaltyReducement; puzzlesFailed++; wrong.Play(); }
 
         if (currentStability > stabilityMax)
             currentStability = stabilityMax;
@@ -79,6 +88,14 @@ public class PressureSystem : MonoBehaviour
             StabilityBar.offsetMin = new Vector2(1 - (currentStability / stabilityMax), 0);
         }
 
+        if(currentStability < 200 && !startedAlarm)
+        {
+            startedAlarm = true;
+            light1.color = Color.red;
+            light2.color = Color.red;
+            alarm.Play();
+        }
+        
         if(currentPressure > 0)
         {
             totalTime += Time.deltaTime;

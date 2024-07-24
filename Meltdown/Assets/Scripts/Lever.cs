@@ -9,6 +9,7 @@ public class Lever : MonoBehaviour
     private SimonSays simonSays;
     public int lever;
     public Animator animator;
+    public AudioSource audio;
     private void OnMouseDown()
     {
         startMouseDragPosition = Input.mousePosition;
@@ -26,6 +27,12 @@ public class Lever : MonoBehaviour
     {
         Vector3 newMousePos = Input.mousePosition;
         if (newMousePos.y < 0) newMousePos.y *= -1;
-        if (startMouseDragPosition.y - newMousePos.y > 100f)  simonSays.PullLever(lever);
+        if (startMouseDragPosition.y - newMousePos.y > 100f)  {simonSays.PullLever(lever); animator.SetFloat("Blend", 1);}
+    }
+
+    private IEnumerator ResetLeverFlip()
+    {
+        yield return new WaitForSeconds(.5f);
+        animator.SetFloat("Blend", 0);
     }
 }

@@ -19,6 +19,8 @@ public class Valves : MonoBehaviour
     private bool changed = false;
     private bool updated = false;
     
+    public AudioSource audio;
+    
     private void OnMouseOver()
     {
         if(Input.GetKey(KeyCode.Mouse0))
@@ -58,7 +60,7 @@ public class Valves : MonoBehaviour
                 if(!changed)
                 {
                     changed = true;
-                    system.currentBasePressureDrop -= .25f;
+                    system.amountOfPressureUntouched += 1;
                 }
             }
             else
@@ -66,7 +68,7 @@ public class Valves : MonoBehaviour
                 if(!changed)
                 {
                     changed = true;
-                    system.currentBasePressureDrop += .25f;
+                    system.amountOfPressureUntouched -= 1;
                 }
             }
         }
@@ -77,6 +79,7 @@ public class Valves : MonoBehaviour
         while(!gameOver)
         {
             changed = false;
+            audio.Play();
             currentGoal = Random.Range(-13500, 13500) / 100;
             currentObjectiveIndicator.gameObject.transform.SetPositionAndRotation(currentObjectiveIndicator.gameObject.transform.position, 
                 new Quaternion(currentGoal / 360,  currentPressureIndicator.gameObject.transform.rotation.y, currentObjectiveIndicator.gameObject.transform.rotation.z, currentObjectiveIndicator.gameObject.transform.rotation.w));

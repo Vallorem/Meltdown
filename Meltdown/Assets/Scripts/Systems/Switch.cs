@@ -9,6 +9,7 @@ public class Switch : MonoBehaviour
     public bool enable = true;
 
     private PressureSystem pressure;
+    public AudioSource audio;
 
     private void Start()
     {
@@ -23,6 +24,8 @@ public class Switch : MonoBehaviour
         else
             enable = true;
 
+        audio.Play();
+        
         if (enable)
             pressure.currentPuzzlesUncompleted -= 1 / 8;
         else

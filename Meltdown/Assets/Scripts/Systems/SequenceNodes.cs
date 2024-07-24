@@ -25,6 +25,9 @@ public class SequenceNodes : MonoBehaviour
     [Space(), Header("Interval between repeat")]
     public float minTimeTillReset = 10;
     public float maxTimeTillReset = 15;
+    
+    public AudioSource audio;
+    
 
     [Space()]
     public List<int> playerChosen = new List<int>();
@@ -65,6 +68,7 @@ public class SequenceNodes : MonoBehaviour
 
     public void UpdatePlayerList(int valueSelected)
     {
+        audio.Play();
         playerChosen.Add(valueSelected);
         if (playerChosen.Count - 1 == numbers.Count - 1)
             completedRepeat = true;

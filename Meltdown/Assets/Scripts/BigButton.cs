@@ -5,7 +5,7 @@ using UnityEngine;
 public class BigButton : MonoBehaviour
 {
 	private PressureSystem function;
-
+	public AudioSource audio;
 	private void Start()
 	{
 		function = FindFirstObjectByType<PressureSystem>();
@@ -13,6 +13,7 @@ public class BigButton : MonoBehaviour
 
 	private void OnMouseDown()
 	{
+		audio.Play();
 		function.EndGame();
 	}
 }
